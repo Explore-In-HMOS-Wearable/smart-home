@@ -1,0 +1,80 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "Discover ways to get the most out of your smart lighting."
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "Smart Home Sample App"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "SmartHome"
+    },
+    {
+      "name": "quick_light_control",
+      "value": "Quick Light Control"
+    },
+    {
+      "name": "brightness_adjustment",
+      "value": "Brightness Adjustment"
+    },
+    {
+      "name": "color_white_tone",
+      "value": "Color and White Tone"
+    },
+    {
+      "name": "stage_management",
+      "value": "Stage Management"
+    },
+    {
+      "name": "group_room_selection",
+      "value": "Group/Room Selection"
+    },
+    {
+      "name": "quick_timers",
+      "value": "Quick Timers"
+    },
+    {
+      "name": "sunrise_sunset_shortcut",
+      "value": "Sunrise/Sunset Shortcut"
+    },
+    {
+      "name": "empty",
+      "value": "Empty"
+    },
+    {
+      "name": "dialog_cancel",
+      "value": "No"
+    },
+    {
+      "name": "delete_current_room",
+      "value": "Are you sure?"
+    },
+    {
+      "name": "dialog_delete",
+      "value": "Yes"
+    },
+    {
+      "name": "delete_rooms",
+      "value": "Are you sure to delete all %d rooms?"
+    },
+    {
+      "name": "dialog_save",
+      "value": "save"
+    },
+    {
+      "name": "room",
+      "value": "Room"
+    },
+    {
+      "name": "add_room",
+      "value": "Add Room"
+    },
+    {
+      "name": "light_all",
+      "value": "Light All"
+    }
+  ]
+}
