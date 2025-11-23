@@ -4,8 +4,7 @@ import {
   ArcSwiper,
   ArcSwiperController,
   CircleShape,
-  ComponentContent,
-  Router
+  ComponentContent
 } from '@kit.ArkUI';
 import RoomBrightnessComponent from '../components/RoomBrightnessComponent';
 import RoomColorComponent from '../components/RoomColorComponent';
@@ -18,7 +17,6 @@ import { RoomItemInfo } from '../components/RoomItemInfo';
 export struct RoomItemView {
   roomItem: RoomItemModel = RoomListStore.getState().currentRoom;
   context: UIContext = this.getUIContext();
-  router: Router = this.context.getRouter();
   header: ComponentContent<Object> = new ComponentContent(this.context, wrapBuilder(headerSheetBuilder));
   private wearableSwiperController: ArcSwiperController = new ArcSwiperController();
   private arcDotIndicator: ArcDotIndicator = new ArcDotIndicator();
@@ -50,9 +48,6 @@ export struct RoomItemView {
         )
         .disableSwipe(false)
         .digitalCrownSensitivity(CrownSensitivity.MEDIUM)
-        .onChange((index: number) => {
-          console.info('onChange:' + index.toString());
-        })
       }
       .height('100%')
     }

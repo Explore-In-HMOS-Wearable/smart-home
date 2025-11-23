@@ -1,4 +1,4 @@
-import { ArcListItem, Router } from '@kit.ArkUI';
+import { ArcListItem, ArcListItemAttribute, Router } from '@kit.ArkUI';
 import { RoomToggleComponentBuilder } from './RoomToggleComponentBuilder';
 import { RoomItemModel } from '../viewmodels/RoomItemModel';
 import { RoomListStore } from '../store/RoomListStore';
@@ -9,8 +9,7 @@ import { Action } from '@hadss/state_store';
 @ComponentV2
 export default struct RoomListItemComponent {
   @Param @Require roomItem: RoomItemModel;
-  context: UIContext = this.getUIContext();
-  router: Router = this.context.getRouter();
+  pathStack: NavPathStack = AppStorage.get('PathStack') as NavPathStack;
 
   @Builder
   itemEnd() {
@@ -19,7 +18,7 @@ export default struct RoomListItemComponent {
         .fontColor([$r('app.color.bg_red')])
         .fontSize($r('app.float.vp_16'))
     }
-    .padding('4vp')
+    .padding($r('sys.float.menu_item_vertical_padding_token'))
     .onClick(() => {
       const action: Action = RoomListActions.deleteRoomItem.setPayload(this.roomItem.id)
       RoomListStore.dispatch(action);
@@ -49,7 +48,7 @@ export default struct RoomListItemComponent {
       .backgroundColor($r('app.color.bg_green'))
       .onClick(() => {
         RoomListStore.dispatch(RoomListActions.getRoomItem.setPayload({ id: this.roomItem.id }))
-        this.router.pushUrl({ url: 'pages/RoomItemPage' });
+        this.pathStack.pushPathByName('RoomItemPage', null)
       })
     }
     .transition({ type: TransitionType.Delete, opacity: 0 })

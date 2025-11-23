@@ -67,10 +67,9 @@ export class RoomItemModel {
         }
       });
 
-      console.info('Suspend delay token: ', token);
+      console.info(`Suspend delay token: ${token}`);
       const timerId = setTimeout(() => {
         currentRoom.isEnabled = false;
-        console.log('setTimeout')
       }, minutes * 1000);
 
       const appData = new AppData(token.requestId, timerId, minutes);

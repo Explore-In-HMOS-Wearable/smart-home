@@ -1,25 +1,47 @@
 import { RoomsListView } from '../views/RoomsListView';
-
 import { notificationManager } from '@kit.NotificationKit';
 import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { RoomItemPageBuilder } from './RoomItemPage';
+import { RoomListStore } from '../store/RoomListStore';
+import RoomListActions from '../store/RoomListActions';
 
 @Entry
 @Component
 struct Index {
+  pathStack: NavPathStack = new NavPathStack();
+
   aboutToAppear() {
+    AppStorage.setOrCreate('PathStack', this.pathStack);
     this.getPermission(this.getUIContext().getHostContext() as common.UIAbilityContext)
   }
 
-  build() {
-    RelativeContainer() {
-      RoomsListView()
+  @Builder
+  pageMap(name: string) {
+    NavDestination() {
+      if (name === 'RoomItemPage') {
+        RoomItemPageBuilder()
+      }
     }
+    .hideToolBar(true)
+    .hideBackButton(true)
+  }
+
+  build() {
+    Navigation(this.pathStack) {
+      RelativeContainer() {
+        RoomsListView()
+      }
+    }
+    .navDestination(this.pageMap)
+    .hideTitleBar(true)
+    .onNavBarStateChange(() => {
+      RoomListStore.dispatch(RoomListActions.getRoomList);
+    })
   }
 
   getPermission(context: common.UIAbilityContext) {
     notificationManager.isNotificationEnabled().then((data: boolean) => {
-      console.info('isNotificationEnabled success, data: ' + JSON.stringify(data));
       if (!data) {
         notificationManager.requestEnableNotification(context).then(() => {
           console.info(`[ANS] requestEnableNotification success`);

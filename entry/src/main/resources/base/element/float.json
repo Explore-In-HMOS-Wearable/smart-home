@@ -47,9 +47,10 @@
     {
       "name": "list_size",
       "value": "400px"
-    }
-  ,{
+    },
+    {
       "name": "page_text_font_size",
       "value": "50fp"
-    }]
+    }
+  ]
 }

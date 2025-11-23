@@ -1,6 +1,10 @@
 import { RoomItemView } from '../views/RoomItemView';
 
-@Entry
+@Builder
+export function RoomItemPageBuilder() {
+  RoomItemPage()
+}
+
 @Component
 struct RoomItemPage {
   build() {

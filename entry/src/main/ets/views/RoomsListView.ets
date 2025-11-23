@@ -67,11 +67,13 @@ export struct RoomsListView {
           .margin({ bottom: 10 })
         }
 
-
-        ForEach(this.viewModel.roomList, (roomItem: RoomItemModel) => {
-          RoomListItemComponent({ roomItem: roomItem })
-
-        }, (item: RoomItemModel) => item.id.toString())
+        ForEach(
+          this.viewModel.roomList,
+          (roomItem: RoomItemModel) => {
+            RoomListItemComponent({ roomItem: roomItem })
+          },
+          (item: RoomItemModel) => item.id.toString()
+        )
       }
       .space(LengthMetrics.px(4))
       .borderRadius($r('app.float.watch_size'))

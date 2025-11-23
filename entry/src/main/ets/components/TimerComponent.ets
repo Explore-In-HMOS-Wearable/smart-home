@@ -43,8 +43,7 @@ export struct TimerComponent {
           this.customDialogBuilder();
         },
         onWillDismiss: (dismissDialogAction: DismissDialogAction) => {
-          console.info('reason' + JSON.stringify(dismissDialogAction.reason))
-          console.log('dialog onWillDismiss')
+          console.info(`reason ${JSON.stringify(dismissDialogAction.reason)}`)
           if (dismissDialogAction.reason == DismissReason.PRESS_BACK) {
             dismissDialogAction.dismiss()
           }
