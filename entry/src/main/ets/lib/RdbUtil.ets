@@ -76,7 +76,7 @@ export default class RdbUtil {
       'isEnabled': data.isEnabled ? 1 : 0,
       'brightness': data.brightness ?? 50,
       'icon': data.icon,
-      'lightColor': data.roomLightColor,
+      'lightColor': data.roomLightColor
     };
     this.store?.insert('RoomList', valueBucket, (err: BusinessError, rowId: number) => {
       if (err) {
@@ -95,7 +95,7 @@ export default class RdbUtil {
       'name': data.name,
       'isEnabled': data.isEnabled ? 1 : 0,
       'brightness': data.brightness ?? 50,
-      'lightColor': data.roomLightColor,
+      'lightColor': data.roomLightColor
     };
     this.store?.update(valueBucket, predicates, (err: BusinessError, rows: number) => {
       if (err) {

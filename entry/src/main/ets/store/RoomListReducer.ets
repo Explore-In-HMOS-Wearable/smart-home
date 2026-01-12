@@ -10,8 +10,8 @@ import promptAction from '@ohos.promptAction';
 let uiContext: UIContext | undefined
 
 export const roomListReducer: Reducer<RoomStoreModel> = (state: RoomStoreModel, action: Action) => {
-  let GlobalContent = GlobalContext.getInstance();
-  uiContext = GlobalContent.getUIContext()
+  let globalContent = GlobalContext.getInstance();
+  uiContext = globalContent.getUIContext()
   switch (action.type) {
     case RoomListActions.getRoomItem.type:
       const room = state.roomList.find(item => item.id === action.payload.id);
@@ -170,4 +170,3 @@ export const roomListReducer: Reducer<RoomStoreModel> = (state: RoomStoreModel, 
   }
   return null;
 };
-

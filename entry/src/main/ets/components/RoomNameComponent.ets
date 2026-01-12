@@ -1,4 +1,4 @@
-import { RoomListStore } from '../store/RoomListStore';
+import { roomListStore } from '../store/RoomListStore';
 import { RoomItemModel } from '../viewmodels/RoomItemModel';
 
 @Builder
@@ -9,7 +9,7 @@ export function roomNameBuilder() {
 @ComponentV2
 export struct RoomNameComponent {
   @Param title: string = 'Brightness';
-  @Local roomItem: RoomItemModel = RoomListStore.getState().currentRoom;
+  @Local roomItem: RoomItemModel = roomListStore.getState().currentRoom;
 
   build() {
     Text(`${this.roomItem.name} ${this.title}`)

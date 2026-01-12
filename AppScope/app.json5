@@ -1,6 +1,6 @@
 {
   "app": {
-    "bundleName": "com.hmosdemos.smarthomesample",
+    "bundleName": "com.hmosdemos.wearable.smart_home",
     "vendor": "hmosdemos",
     "versionCode": 1000000,
     "versionName": "1.0.0",

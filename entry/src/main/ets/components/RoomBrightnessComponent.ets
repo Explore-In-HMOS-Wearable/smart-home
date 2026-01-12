@@ -1,11 +1,11 @@
 import { RoomItemModel } from '../viewmodels/RoomItemModel';
-import { RoomListStore } from '../store/RoomListStore';
+import { roomListStore } from '../store/RoomListStore';
 import RoomListActions from '../store/RoomListActions';
 import { RoomNameComponent } from './RoomNameComponent';
 
 @Component
 export default struct RoomBrightnessComponent {
-  roomItem: RoomItemModel = RoomListStore.getState().currentRoom;
+  roomItem: RoomItemModel = roomListStore.getState().currentRoom;
   context: UIContext = this.getUIContext();
 
   build() {
@@ -22,7 +22,7 @@ export default struct RoomBrightnessComponent {
         .selectedColor('#4CAF50')
         .showTips(true)
         .onChange((value: number, mode: SliderChangeMode) => {
-          RoomListStore.dispatch(RoomListActions.updateRoomItem.setPayload({ brightness: value }))
+          roomListStore.dispatch(RoomListActions.updateRoomItem.setPayload({ brightness: value }))
         })
         .onDigitalCrown((event: CrownEvent) => {
           event.stopPropagation();

@@ -1,7 +1,13 @@
 import { Action } from '@hadss/state_store';
-import { ArcDirection, ArcDotIndicator, ArcSwiper, ComponentContent } from '@kit.ArkUI';
+import {
+  ArcDirection,
+  ArcDotIndicator,
+  ArcSwiper,
+  ArcSwiperAttribute,
+  ComponentContent
+} from '@kit.ArkUI';
 import RoomListActions from '../store/RoomListActions';
-import { RoomListStore } from '../store/RoomListStore';
+import { roomListStore } from '../store/RoomListStore';
 import { RoomStoreModel } from '../viewmodels/RoomStoreModel';
 import { roomNameBuilder, RoomNameComponent } from './RoomNameComponent';
 
@@ -38,42 +44,42 @@ class ColorDataSource implements IDataSource {
 
 @ComponentV2
 export default struct RoomColorComponent {
-  @Local viewModel: RoomStoreModel = RoomListStore.getState();
+  @Local viewModel: RoomStoreModel = roomListStore.getState();
   context: UIContext = this.getUIContext();
   header: ComponentContent<Object> = new ComponentContent(this.context, wrapBuilder(roomNameBuilder));
   @Local backgroundColors: BackgroundColor[] = [
     {
       'name': 'Green',
-      'color': Color.Green,
+      'color': Color.Green
     },
     {
       'name': 'Blue',
-      'color': Color.Blue,
+      'color': Color.Blue
     },
     {
       'name': 'Yellow',
-      'color': Color.Yellow,
+      'color': Color.Yellow
     },
     {
       'name': 'Pink',
-      'color': Color.Pink,
+      'color': Color.Pink
     },
     {
       'name': 'White',
-      'color': Color.White,
+      'color': Color.White
     },
     {
       'name': 'Gray',
-      'color': Color.Gray,
+      'color': Color.Gray
     },
     {
       'name': 'Orange',
-      'color': Color.Orange,
+      'color': Color.Orange
     },
     {
       'name': 'Transparent',
-      'color': Color.Transparent,
-    },
+      'color': Color.Transparent
+    }
   ];
   private arcDotIndicator: ArcDotIndicator = new ArcDotIndicator();
   private data: ColorDataSource = new ColorDataSource([]);
@@ -128,7 +134,7 @@ export default struct RoomColorComponent {
       .onChange((index: number) => {
         const colorName: string = this.data.getData(index).name;
         const action: Action = RoomListActions.updateRoomItem.setPayload({ lightColor: colorName });
-        RoomListStore.dispatch(action)
+        roomListStore.dispatch(action)
       })
     }
     .justifyContent(FlexAlign.Center)

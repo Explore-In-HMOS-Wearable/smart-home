@@ -30,8 +30,8 @@ export default class EntryAbility extends UIAbility {
       let uiContext: UIContext = windowStage.getMainWindowSync().getUIContext()
       AppStorage.setOrCreate('uiContext', uiContext);
 
-      let GlobalContent = GlobalContext.getInstance();
-      GlobalContent.saveUIContext(uiContext);
+      let globalContent = GlobalContext.getInstance();
+      globalContent.saveUIContext(uiContext);
     });
   }
 

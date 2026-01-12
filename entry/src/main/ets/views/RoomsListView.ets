@@ -1,8 +1,12 @@
 import {
-  ArcList, ArcListItem, ComponentContent, LengthMetrics
+  ArcList,
+  ArcListAttribute,
+  ArcListItem,
+  ComponentContent,
+  LengthMetrics
 } from '@kit.ArkUI';
 import RoomListActions from '../store/RoomListActions';
-import { RoomListStore } from '../store/RoomListStore';
+import { roomListStore } from '../store/RoomListStore';
 import { RoomStoreModel } from '../viewmodels/RoomStoreModel';
 import { RoomItemModel } from '../viewmodels/RoomItemModel';
 import { addSheetBuilder } from '../components/AddSheetBuilder';
@@ -12,7 +16,7 @@ import RoomListItemComponent from '../components/RoomListItemComponent';
 
 @ComponentV2
 export struct RoomsListView {
-  @Local viewModel: RoomStoreModel = RoomListStore.getState();
+  @Local viewModel: RoomStoreModel = roomListStore.getState();
   context: UIContext = this.getUIContext();
   header: ComponentContent<Object> = new ComponentContent(this.context, wrapBuilder(headerSheetBuilder));
 
@@ -22,7 +26,7 @@ export struct RoomsListView {
   }
 
   aboutToAppear() {
-    RoomListStore.dispatch(RoomListActions.getRoomList);
+    roomListStore.dispatch(RoomListActions.getRoomList);
   }
 
   build() {
@@ -38,13 +42,13 @@ export struct RoomsListView {
                   .fontColor(Color.White)
               }
               .onClick(async () => {
-                RoomListStore.dispatch(RoomListActions.showSheet);
+                roomListStore.dispatch(RoomListActions.showSheet);
               })
 
               Blank('16px')
               Column() {
                 Icon({
-                  iconSrc: this.viewModel.isAllEnabled ? $r('app.media.lightBulbOff') : $r('app.media.lightBulbOn'),
+                  iconSrc: this.viewModel.isAllEnabled ? $r('app.media.lightBulbOff') : $r('app.media.lightBulbOn')
                 })
                 Text($r('app.string.light_all'))
                   .fontSize('14px')
@@ -52,9 +56,9 @@ export struct RoomsListView {
               }
               .onClick(async () => {
                 if (this.viewModel.isAllEnabled) {
-                  RoomListStore.dispatch(RoomListActions.disableAll)
+                  roomListStore.dispatch(RoomListActions.disableAll)
                 } else {
-                  RoomListStore.dispatch(RoomListActions.enableAll)
+                  roomListStore.dispatch(RoomListActions.enableAll)
                 }
               })
             }
@@ -92,7 +96,7 @@ export struct RoomsListView {
       backgroundColor: $r('app.color.page_background'),
       keyboardAvoidMode: SheetKeyboardAvoidMode.RESIZE_ONLY,
       onWillDismiss: () => {
-        RoomListStore.dispatch(RoomListActions.hideSheet);
+        roomListStore.dispatch(RoomListActions.hideSheet);
       }
     })
   }

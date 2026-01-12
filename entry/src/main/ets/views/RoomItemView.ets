@@ -2,20 +2,21 @@ import {
   ArcDirection,
   ArcDotIndicator,
   ArcSwiper,
+  ArcSwiperAttribute,
   ArcSwiperController,
   CircleShape,
   ComponentContent
 } from '@kit.ArkUI';
 import RoomBrightnessComponent from '../components/RoomBrightnessComponent';
 import RoomColorComponent from '../components/RoomColorComponent';
-import { RoomListStore } from '../store/RoomListStore';
+import { roomListStore } from '../store/RoomListStore';
 import { RoomItemModel } from '../viewmodels/RoomItemModel';
 import { headerSheetBuilder } from '../components/HeaderSheetBuilder';
 import { RoomItemInfo } from '../components/RoomItemInfo';
 
 @Component
 export struct RoomItemView {
-  roomItem: RoomItemModel = RoomListStore.getState().currentRoom;
+  roomItem: RoomItemModel = roomListStore.getState().currentRoom;
   context: UIContext = this.getUIContext();
   header: ComponentContent<Object> = new ComponentContent(this.context, wrapBuilder(headerSheetBuilder));
   private wearableSwiperController: ArcSwiperController = new ArcSwiperController();
@@ -43,7 +44,7 @@ export struct RoomItemView {
             .backgroundColor(Color.Black)
             .maskColor(new LinearGradient([{
               color: Color.Transparent,
-              offset: 0,
+              offset: 0
             }]))
         )
         .disableSwipe(false)

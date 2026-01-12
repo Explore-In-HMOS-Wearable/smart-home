@@ -88,7 +88,7 @@ export class RoomItemModel {
     const appData = AppStorageV2.connect(AppData, `timer_${this.id}`, () => new AppData())!;
     const requestId: number = appData.requestId;
     const timerId: number = appData.timerId;
-    if (requestId != -1 && timerId != -1) {
+    if (requestId !== -1 && timerId !== -1) {
       try {
         backgroundTaskManager.cancelSuspendDelay(requestId);
       } catch (err) {

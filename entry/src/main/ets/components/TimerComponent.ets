@@ -8,7 +8,7 @@ import {
   LengthUnit
 } from '@kit.ArkUI';
 import { RoomStoreModel } from '../viewmodels/RoomStoreModel';
-import { RoomListStore } from '../store/RoomListStore';
+import { roomListStore } from '../store/RoomListStore';
 import { RoomItemModel } from '../viewmodels/RoomItemModel';
 import { toggleStatus } from '../lib/Utils';
 import { AppData } from '../viewmodels/AppData';
@@ -18,7 +18,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 @ComponentV2
 export struct TimerComponent {
   @Local bottomOptions: ArcButtonOptions = new ArcButtonOptions({});
-  viewModel: RoomStoreModel = RoomListStore.getState();
+  viewModel: RoomStoreModel = roomListStore.getState();
   currentRoom: RoomItemModel = this.viewModel.currentRoom
   context: UIContext = this.getUIContext();
   @Local appData: AppData = AppStorageV2.connect(AppData, `timer_${this.currentRoom.id}`, () => new AppData())!;
@@ -32,7 +32,7 @@ export struct TimerComponent {
       onSelect: (minutes: number) => {
         this.minutes = minutes;
         this.onTimerClick();
-      },
+      }
     })
   }
 
@@ -44,10 +44,10 @@ export struct TimerComponent {
         },
         onWillDismiss: (dismissDialogAction: DismissDialogAction) => {
           console.info(`reason ${JSON.stringify(dismissDialogAction.reason)}`)
-          if (dismissDialogAction.reason == DismissReason.PRESS_BACK) {
+          if (dismissDialogAction.reason === DismissReason.PRESS_BACK) {
             dismissDialogAction.dismiss()
           }
-          if (dismissDialogAction.reason == DismissReason.TOUCH_OUTSIDE) {
+          if (dismissDialogAction.reason === DismissReason.TOUCH_OUTSIDE) {
             dismissDialogAction.dismiss()
           }
         }
@@ -63,12 +63,12 @@ export struct TimerComponent {
   aboutToAppear() {
     try {
       this.bottomOptions = new ArcButtonOptions({
-        label: this.appData.timerId != -1 ? `${this.appData.timerTime} minutes` : 'Set Timer',
+        label: this.appData.timerId !== -1 ? `${this.appData.timerTime} minutes` : 'Set Timer',
         styleMode: ArcButtonStyleMode.EMPHASIZED_LIGHT,
         fontSize: new LengthMetrics(15, LengthUnit.FP),
         shadowEnabled: true,
         backgroundColor: ColorMetrics.resourceColor($r('app.color.bg_green')),
-        onClick: () => this.onDialogHandler(),
+        onClick: () => this.onDialogHandler()
       })
     } catch (err) {
       console.error(`[ANS] requestEnableNotification failed, code is ${err.code}, message is ${err.message}`);
@@ -84,7 +84,7 @@ export struct TimerComponent {
   }
 
   onTimerClick() {
-    if (this.appData.timerId != -1) {
+    if (this.appData.timerId !== -1) {
       this.cancelTimer();
     }
     if (!this.currentRoom.isEnabled) {

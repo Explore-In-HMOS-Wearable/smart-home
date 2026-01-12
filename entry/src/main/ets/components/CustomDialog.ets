@@ -6,7 +6,7 @@ function btnStyle() {
   .border({
     color: Color.White,
     style: BorderStyle.Solid,
-    width: 1,
+    width: 1
   })
   .padding(5)
 }

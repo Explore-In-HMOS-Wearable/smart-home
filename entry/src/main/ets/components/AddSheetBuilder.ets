@@ -1,5 +1,5 @@
 import RoomListActions from '../store/RoomListActions';
-import { RoomListStore } from '../store/RoomListStore';
+import { roomListStore } from '../store/RoomListStore';
 import { Icon } from './IconContainer';
 import { RoomStoreModel } from '../viewmodels/RoomStoreModel';
 
@@ -10,7 +10,7 @@ export function addSheetBuilder() {
 
 @ComponentV2
 struct AddSheetComponent {
-  viewModel: RoomStoreModel = RoomListStore.getState();
+  viewModel: RoomStoreModel = roomListStore.getState();
 
   build() {
     Column() {
@@ -23,7 +23,7 @@ struct AddSheetComponent {
           .placeholderColor(Color.Gray)
           .margin({ top: $r('app.float.vp_8') })
           .onChange((value) => {
-            RoomListStore.dispatch(RoomListActions.changeTextInput.setPayload(value));
+            roomListStore.dispatch(RoomListActions.changeTextInput.setPayload(value));
           });
         Row() {
           Icon({
@@ -31,28 +31,28 @@ struct AddSheetComponent {
               $r('app.media.livingRoomActive') : $r('app.media.livingRoom')
           })
             .onClick(() => {
-              RoomListStore.dispatch(RoomListActions.changeIconInput.setPayload('app.media.livingRoomActive'));
+              roomListStore.dispatch(RoomListActions.changeIconInput.setPayload('app.media.livingRoomActive'));
             })
           Icon({
             iconSrc: this.viewModel.addRoomIcon === 'app.media.bathroomActive' ?
               $r('app.media.bathroomActive') : $r('app.media.bathroom')
           })
             .onClick(() => {
-              RoomListStore.dispatch(RoomListActions.changeIconInput.setPayload('app.media.bathroomActive'));
+              roomListStore.dispatch(RoomListActions.changeIconInput.setPayload('app.media.bathroomActive'));
             })
           Icon({
             iconSrc: this.viewModel.addRoomIcon === 'app.media.washingRoomActive' ?
               $r('app.media.washingRoomActive') : $r('app.media.washingRoom')
           })
             .onClick(() => {
-              RoomListStore.dispatch(RoomListActions.changeIconInput.setPayload('app.media.washingRoomActive'));
+              roomListStore.dispatch(RoomListActions.changeIconInput.setPayload('app.media.washingRoomActive'));
             })
           Icon({
             iconSrc: this.viewModel.addRoomIcon === 'app.media.bedroomActive' ?
               $r('app.media.bedroomActive') : $r('app.media.bedroom')
           })
             .onClick(() => {
-              RoomListStore.dispatch(RoomListActions.changeIconInput.setPayload('app.media.bedroomActive'));
+              roomListStore.dispatch(RoomListActions.changeIconInput.setPayload('app.media.bedroomActive'));
             })
 
         }
@@ -63,7 +63,7 @@ struct AddSheetComponent {
       Button($r('app.string.add_room'), { type: ButtonType.Capsule })
         .fontSize($r('app.float.font_sm'))
         .onClick(() => {
-          RoomListStore.dispatch(RoomListActions.addRoomList);
+          roomListStore.dispatch(RoomListActions.addRoomList);
         })
       Blank().layoutWeight(1)
     }

@@ -1,7 +1,7 @@
 import { ArcListItem, ArcListItemAttribute, Router } from '@kit.ArkUI';
 import { RoomToggleComponentBuilder } from './RoomToggleComponentBuilder';
 import { RoomItemModel } from '../viewmodels/RoomItemModel';
-import { RoomListStore } from '../store/RoomListStore';
+import { roomListStore } from '../store/RoomListStore';
 import RoomListActions from '../store/RoomListActions';
 import { Icon } from './IconContainer';
 import { Action } from '@hadss/state_store';
@@ -21,7 +21,7 @@ export default struct RoomListItemComponent {
     .padding($r('sys.float.menu_item_vertical_padding_token'))
     .onClick(() => {
       const action: Action = RoomListActions.deleteRoomItem.setPayload(this.roomItem.id)
-      RoomListStore.dispatch(action);
+      roomListStore.dispatch(action);
     })
   }
 
@@ -47,7 +47,7 @@ export default struct RoomListItemComponent {
       .focusOnTouch(false)
       .backgroundColor($r('app.color.bg_green'))
       .onClick(() => {
-        RoomListStore.dispatch(RoomListActions.getRoomItem.setPayload({ id: this.roomItem.id }))
+        roomListStore.dispatch(RoomListActions.getRoomItem.setPayload({ id: this.roomItem.id }))
         this.pathStack.pushPathByName('RoomItemPage', null)
       })
     }
@@ -62,4 +62,3 @@ export default struct RoomListItemComponent {
     .align(Alignment.Center)
   }
 }
-

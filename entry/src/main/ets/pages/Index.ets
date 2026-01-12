@@ -3,7 +3,7 @@ import { notificationManager } from '@kit.NotificationKit';
 import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { RoomItemPageBuilder } from './RoomItemPage';
-import { RoomListStore } from '../store/RoomListStore';
+import { roomListStore } from '../store/RoomListStore';
 import RoomListActions from '../store/RoomListActions';
 
 @Entry
@@ -36,7 +36,7 @@ struct Index {
     .navDestination(this.pageMap)
     .hideTitleBar(true)
     .onNavBarStateChange(() => {
-      RoomListStore.dispatch(RoomListActions.getRoomList);
+      roomListStore.dispatch(RoomListActions.getRoomList);
     })
   }
 
@@ -46,7 +46,7 @@ struct Index {
         notificationManager.requestEnableNotification(context).then(() => {
           console.info(`[ANS] requestEnableNotification success`);
         }).catch((err: BusinessError) => {
-          if (1600004 == err.code) {
+          if (1600004 === err.code) {
             console.error(`[ANS] requestEnableNotification refused, code is ${err.code}, message is ${err.message}`);
           } else {
             console.error(`[ANS] requestEnableNotification failed, code is ${err.code}, message is ${err.message}`);
